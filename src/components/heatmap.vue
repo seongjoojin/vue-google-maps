@@ -4,7 +4,7 @@
 <script>
 import buildComponent from './build-component.js'
 
-export default {
+export default buildComponent({
   name: 'heatmap',
   props: {
     lat: {
@@ -72,5 +72,5 @@ export default {
       this.$heatmap.setMap(this.$mapObject);
     });
   }
-};
+});
 </script>
