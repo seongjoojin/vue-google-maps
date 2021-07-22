@@ -6,6 +6,7 @@
 
 <script>
 import buildComponent from './build-component.js'
+import { defineComponent, ref } from 'vue';
 
 const props = {
   options: {
@@ -37,6 +38,18 @@ export default buildComponent({
       type: Boolean,
       default: true,
     },
+    infoWindow: {
+      type: Boolean,
+      default: null,
+    },
+    serial: {
+      type: String,
+      required: false
+    },
+    selectedMarker: {
+      type: String,
+      required: false
+    }
   },
 
   inject: {
@@ -44,7 +57,6 @@ export default buildComponent({
       default: null,
     },
   },
-
   mounted() {
     const el = this.$refs.infoWindow
     el.parentNode.removeChild(el)
@@ -61,21 +73,26 @@ export default buildComponent({
       })
     }
   },
-  emits: ['closeclick'],
-  methods: {
+  emits: events,
+  methods:{
     _openInfoWindow() {
       this.$infoWindowObject.close()
-      if (this.opened) {
-        this.$infoWindowObject.open(this.$map, this.$markerObject)
-      } else {
-        this.$emit('closeclick')
+      if (this.infoWindow) {
+        if(this.serial === this.selectedMarker) {
+          this.$infoWindowObject.open(this.$map, this.$markerObject)
+        }
       }
     },
   },
 
-  afterCreate() {
+  afterCreate(inst) {
+    events.forEach((event) => {
+      inst.addListener(event, () => {
+        this.$emit(event);
+      })
+    })
     this._openInfoWindow()
-    this.$watch('opened', () => {
+    this.$watch('selectedMarker', (infoWindow) => {
       this._openInfoWindow()
     })
   },
