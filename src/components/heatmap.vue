@@ -60,7 +60,6 @@ export default buildComponent({
     }
   },
   created() {
-    return loaded.then(() => {
       const mapElement = this.$refs.heatmap;
       this.$mapObject = new google.maps.Map(mapElement, {
         zoom: this.initialZoom,
@@ -72,7 +71,6 @@ export default buildComponent({
         map: this.$mapObject
       });
       this.$heatmap.setMap(this.$mapObject);
-    });
-  }
+    }
 });
 </script>
