@@ -70,6 +70,5 @@ export default {
       });
       this.$heatmap.setMap(this.$mapObject);
     }
-  }
 };
 </script>
