@@ -56,6 +56,8 @@ export class Loader {
             url += `&map_ids=${this.mapIds.join(",")}`;
         }
 
+        url += '&libraries=visualization'
+
         return url;
     }
 
