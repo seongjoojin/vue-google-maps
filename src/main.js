@@ -10,6 +10,7 @@ import GMapCluster from './components/cluster.vue'
 import InfoWindow from './components/infoWindow.vue'
 import Map from './components/map.vue'
 import Autocomplete from './components/autocomplete.vue'
+import HeatMap from './components/heatmap.vue'
 
 import MapElementMixin from './components/mapElementMixin'
 import buildComponent from './components/build-component'
@@ -72,6 +73,7 @@ export default function install(Vue, options) {
     Vue.component('GMapCircle', Circle)
     Vue.component('GMapRectangle', Rectangle)
     Vue.component('GMapAutocomplete', Autocomplete)
+    Vue.component('GMapHeatMap', HeatMap)
   }
 }
 

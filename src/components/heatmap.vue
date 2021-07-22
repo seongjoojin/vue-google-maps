@@ -4,9 +4,7 @@
 <script>
 import buildComponent from './build-component.js'
 
-export default buildComponent({
-  name: 'heatmap',
-  props: {
+const props = {
     lat: {
       type: Number,
       default: () => 37.775
@@ -35,7 +33,11 @@ export default buildComponent({
       type: [String, Number],
       default: () => '100%'
     }
-  },
+  }
+
+export default buildComponent({
+  name: 'heatmap',
+  mappedProps: props,
   computed: {
     mapWidth() {
       if (typeof this.width === 'string') {

@@ -15,7 +15,7 @@ export function createMapScript(options) {
   let url =
     baseUrl +
     Object.keys(options)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(options[key])).join('&')
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(options[key])).join('&') + '&libraries=visualization'
 
   googleMapScript.setAttribute('src', url)
   googleMapScript.setAttribute('async', '')
