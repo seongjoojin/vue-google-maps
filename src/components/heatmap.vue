@@ -57,7 +57,7 @@ export default {
       );
     }
   },
-  created() {
+  mounted() {
       const mapElement = this.$refs.heatmap;
       this.$mapObject = new google.maps.Map(mapElement, {
         zoom: this.initialZoom,
