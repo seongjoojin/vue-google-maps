@@ -193,11 +193,13 @@ export default {
 
         this.$mapPromiseDeferred.resolve(this.$mapObject)
 
-        this.$heatmap = new google.maps.visualization.HeatmapLayer({
-          data: this.heatmapPoints,
-          map: this.$mapObject
-        });
-        this.$heatmap.setMap(this.$mapObject);
+        if (this.points.length > 0) {
+          this.$heatmap = new google.maps.visualization.HeatmapLayer({
+            data: this.heatmapPoints,
+            map: this.$mapObject
+          });
+          this.$heatmap.setMap(this.$mapObject);
+        }
 
         return this.$mapObject
       })
