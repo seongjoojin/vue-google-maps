@@ -47,13 +47,7 @@ const props = {
     default() {
       return {}
     },
-  },
-  points: {
-    type: Array,
-    default() {
-      return []
-    }
-  },
+  }
 }
 
 const events = [
@@ -109,7 +103,15 @@ const customMethods = {
 
 export default {
   mixins: [mountableMixin],
-  props: mappedPropsToVueProps(props),
+  props: mappedPropsToVueProps({
+    ...props,
+    points: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+  }),
 
   provide() {
     this.$mapPromise = new Promise((resolve, reject) => {
@@ -135,9 +137,9 @@ export default {
       return { lat: this.finalLat, lng: this.finalLng }
     },
     heatmapPoints() {
-      return this.points.map(
+      return this.points.length > 0 ? this.points.map(
         point => new google.maps.LatLng(point.lat, point.lng)
-      );
+      ) : [];
     }
   },
 
