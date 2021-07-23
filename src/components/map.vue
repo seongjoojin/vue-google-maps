@@ -48,6 +48,12 @@ const props = {
       return {}
     },
   },
+  points: {
+    type: Array,
+    default() {
+      return []
+    }
+  },
 }
 
 const events = [
@@ -128,6 +134,11 @@ export default {
     finalLatLng() {
       return { lat: this.finalLat, lng: this.finalLng }
     },
+    heatmapPoints() {
+      return this.points.map(
+        point => new google.maps.LatLng(point.lat, point.lng)
+      );
+    }
   },
 
   watch: {
@@ -181,6 +192,12 @@ export default {
         })
 
         this.$mapPromiseDeferred.resolve(this.$mapObject)
+
+        this.$heatmap = new google.maps.visualization.HeatmapLayer({
+          data: this.heatmapPoints,
+          map: this.$mapObject
+        });
+        this.$heatmap.setMap(this.$mapObject);
 
         return this.$mapObject
       })
