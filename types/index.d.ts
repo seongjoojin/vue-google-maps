@@ -4,6 +4,7 @@ import type { Component, App } from "vue"
 export declare interface VueGoogleMapsOptions {
   load: {
     key: string;
+    libraries?: string;
   }
 }
 
